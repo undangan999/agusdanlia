@@ -10,7 +10,7 @@
 
 <!-- Musik Latar -->
 <audio id="background-music" autoplay loop>
-  <source src="Musik2.mp3" type="audio/mpeg">
+  <source src="Musik3.mp3" type="audio/mpeg">
   Browser Anda tidak mendukung audio.
 </audio>
 
@@ -24,7 +24,7 @@
 
   <div class="couple-names">
     <h2 class="outline-text fade-in">Nova Lia Hasibuan</h2>
-        <img src="Gambar1.png" alt="Nova Lia Hasibuan" class="photo">
+    <img src="Gambar1.png" alt="Nova Lia Hasibuan" class="photo">
     <p>Putri dari Bapak Alm. Basir Hasibuan dan Ibu Mariyam</p>
 
     <h2 class="outline-text fade-in">Agus Salim</h2>
@@ -51,8 +51,8 @@
     <div class="gallery-photos">
         <span class="close">&times;</span>
         <img src="Gambar1.png" alt="Galeri Foto 1" class="zoom-in">
-        <img src="Gambar2.png" alt="Galeri Foto 1" class="zoom-in">
-        <img src="Gambar3.png" alt="Galeri Foto 1" class="zoom-in">
+        <img src="Gambar2.png" alt="Galeri Foto 2" class="zoom-in">
+        <img src="Gambar3.png" alt="Galeri Foto 3" class="zoom-in">
     </div>
   </div>
 
@@ -72,15 +72,36 @@
   </div>
 
 </div>
-<!-- Audio -->
-<audio id="background-music" loop>
-  <source src="Musik2.mp3" type="audio/mpeg">
-  Browser Anda tidak mendukung audio.
-</audio>
 
 <!-- Tombol Play Musik -->
 <button id="play-music-btn" class="music-button">🎵 Putar Musik</button>
 
 <script src="script.js"></script>
+<script>
+  // Fungsi untuk tombol putar musik
+  document.getElementById('play-music-btn').addEventListener('click', function() {
+    var audio = document.getElementById('background-music');
+    if (audio.paused) {
+      audio.play();
+      this.textContent = '🎵 Musik Dihentikan';
+    } else {
+      audio.pause();
+      this.textContent = '🎵 Putar Musik';
+    }
+  });
+
+  // Fungsi untuk menangani pengiriman RSVP
+  document.getElementById('rsvp-form').addEventListener('submit', function(event) {
+    event.preventDefault(); // Menghindari pengiriman form secara default
+    const name = event.target.querySelector('input[type="text"]').value;
+    const message = event.target.querySelector('textarea').value;
+    const rsvpList = document.getElementById('rsvp-list');
+    const rsvpItem = document.createElement('div');
+    rsvpItem.innerHTML = `<p><strong>${name}</strong>: ${message}</p>`;
+    rsvpList.appendChild(rsvpItem);
+    event.target.reset(); // Menghapus form setelah dikirim
+  });
+</script>
+
 </body>
 </html>
